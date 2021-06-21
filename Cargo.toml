@@ -1,0 +1,28 @@
+[package]
+name = "findereport-site"
+version = "0.1.0"
+authors = ["dan"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+mongodb = "1.1.0"
+tokio = { version = "0.2", features = ["full"] }
+bson = "1.1"
+chrono = { version = "0.4", features = ["serde"] }
+serde = {version = "1.0", features = ["derive"] }
+futures = { version = "0.3.4", default-features = false, features = ["async-await"] }
+thiserror = "1.0"
+serde_json = "1.0"
+hyper = "0.13"
+clap = "2"
+env_logger = "0.7"
+log = "0.4"
+url = "2.0"
+http = "0.2"
+lazy_static = "1.4"
+
+[dependencies.tera]
+version = "1"
+default-features = false
