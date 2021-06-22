@@ -79,7 +79,7 @@ async fn main() -> Result<()> {
         let client = get_client_ip(socket.remote_addr());
         async move {
             Ok::<_, hyper::Error>(service_fn(move |req: Request<Body>| {
-                server::echo(req, db.clone(), client)
+                server::main_handler(req, db.clone(), client)
             }))
         }
     });

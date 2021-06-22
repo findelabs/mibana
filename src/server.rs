@@ -5,6 +5,32 @@ use crate::tools;
 use hyper::header::{HeaderValue, CONTENT_TYPE};
 use hyper::{Body, Method, Request, Response, StatusCode};
 use std::net::Ipv4Addr;
+use clap::ArgMatches;
+use std::error::Error;
+
+
+type BoxResult<T> = Result<T,Box<dyn Error + Send + Sync>>;
+
+
+// This is the main handler, to catch any failures in the echo fn
+pub async fn main_handler(
+    req: Request<Body>,
+    db: db::DB,
+    client: Option<Ipv4Addr>,
+) -> BoxResult<Response<Body>> {
+    match echo(req, db, client).await {
+        Ok(s) => {
+            log::debug!("Handler got success");
+            Ok(s)
+        }
+        Err(e) => {
+            log::error!("Handler caught error: {}", e);
+            let mut response = Response::new(Body::from(format!("{{\"error\" : \"{}\"}}", e)));
+            *response.status_mut() = StatusCode::INTERNAL_SERVER_ERROR;
+            Ok(response)
+        }
+    }
+}
 
 pub async fn echo(
     req: Request<Body>,
@@ -26,7 +52,7 @@ pub async fn echo(
 
     match (req.method(), req.uri().path()) {
         // Serve some instructions at /
-        (&Method::GET, "/") => {
+        (&Method::GET, "/query") => {
             // Split apart request
             let (parts, _body) = req.into_parts();
 
