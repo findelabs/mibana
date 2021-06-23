@@ -23,7 +23,7 @@ url = "2.0"
 http = "0.2"
 lazy_static = "1.4"
 rust_tools = { git = "https://github.com/findelabs/rust-tools.git", branch = "master" }
-
+urlencoding = "1.3"
 
 [dependencies.tera]
 version = "1"

@@ -2,9 +2,7 @@ use futures::StreamExt;
 use mongodb::bson::{doc, document::Document, Bson};
 use mongodb::{options::ClientOptions, options::FindOptions, Client, Collection};
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
 use rust_tools::bson::{to_doc, to_doc_vec};
-
 
 const DB_NAME: &str = "articles";
 const COLL: &str = "published";
@@ -35,15 +33,16 @@ impl DB {
 
         let pretty_query = format!("{{{}}}", query);
 
-        println!("{}", pretty_query);
+        // Log info
+        log::info!(
+            "query={}",
+            &pretty_query
+        );
 
         let data = match to_doc(&pretty_query) {
             Ok(d) => d,
             Err(e) => return Err(e),
         };
-
-//        let testing = bson::to_bson(&v).unwrap();
-//        let testing = doc! {v};
 
         let find_options = FindOptions::builder()
             .sort(doc! { "time": -1 })

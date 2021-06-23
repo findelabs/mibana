@@ -5,9 +5,7 @@ use crate::tools;
 use hyper::header::{HeaderValue, CONTENT_TYPE};
 use hyper::{Body, Method, Request, Response, StatusCode};
 use std::net::Ipv4Addr;
-use clap::ArgMatches;
 use std::error::Error;
-
 
 type BoxResult<T> = Result<T,Box<dyn Error + Send + Sync>>;
 
