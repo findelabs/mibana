@@ -66,7 +66,7 @@ pub async fn echo(
             Ok(Response::new(Body::from(index)))
         }
         (&Method::GET, "/favicon.ico") => {
-            let bytes: Vec<u8> = std::fs::read("/app/site/images/favicon.ico")?;
+            let bytes: Vec<u8> = include_bytes!("site/images/favicon.ico").to_vec();
             let mut response = Response::new(Body::from(bytes));
             response
                 .headers_mut()
@@ -74,7 +74,7 @@ pub async fn echo(
             Ok(response)
         }
         (&Method::GET, "/search_icon.svg") => {
-            let bytes: Vec<u8> = std::fs::read("/app/site/images/search_icon.svg")?;
+            let bytes: Vec<u8> = include_bytes!("site/images/search_icon.svg").to_vec();
             let mut response = Response::new(Body::from(bytes));
             response
                 .headers_mut()
@@ -82,7 +82,7 @@ pub async fn echo(
             Ok(response)
         }
         (&Method::GET, "/style.css") => {
-            let file = std::fs::read_to_string("/app/site/templates/style.css")?;
+            let file = include_str!("site/templates/style.css");
             let mut response = Response::new(Body::from(file));
             response
                 .headers_mut()
@@ -90,7 +90,7 @@ pub async fn echo(
             Ok(response)
         }
         (&Method::GET, "/tools.js") => {
-            let file = std::fs::read_to_string("/app/site/templates/tools.js")?;
+            let file = include_str!("site/templates/tools.js");
             let mut response = Response::new(Body::from(file));
             response.headers_mut().insert(
                 CONTENT_TYPE,
