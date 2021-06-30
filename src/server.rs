@@ -57,10 +57,22 @@ pub async fn echo(
             // Create queriable hashmap from queries
             let queries = tools::queries(&parts).expect("Failed to generate hashmap of queries");
 
+            let default = "test".to_owned();
+            let collection = queries.get("collection").unwrap_or(&default);
+
             // Get posts based on query param
             let results = match queries.get("query") {
-                Some(query) => db.search(query).await?,
-                None => db::Hits::default(),
+                Some(query) => db.search(query, collection).await?,
+                None => {
+                    let mut results = Vec::new();
+                    let string = "this is a test".to_owned();
+                    let collections = db.collections().await?;
+                    results.push(string);
+                    db::Hits {
+                        results,
+                        collections 
+                    }
+                }
             };
             let index = tera_build::tera_create(results, "index.html")?;
             Ok(Response::new(Body::from(index)))

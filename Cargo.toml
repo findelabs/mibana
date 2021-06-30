@@ -1,5 +1,5 @@
 [package]
-name = "findereport-site"
+name = "mongodb-frontpage"
 version = "0.1.0"
 authors = ["dan"]
 edition = "2018"

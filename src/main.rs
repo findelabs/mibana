@@ -36,6 +36,16 @@ async fn main() -> Result<()> {
                 .takes_value(true),
         )
         .arg(
+            Arg::with_name("db")
+                .short("d")
+                .long("db")
+                .required(true)
+                .value_name("MONGODB_DB")
+                .env("MONGODB_DB")
+                .help("MongoDB Database")
+                .takes_value(true),
+        )
+        .arg(
             Arg::with_name("port")
                 .short("p")
                 .long("port")
@@ -48,6 +58,7 @@ async fn main() -> Result<()> {
         .get_matches();
 
     let url = &opts.value_of("url").unwrap();
+    let db = &opts.value_of("db").unwrap();
     let port: u16 = opts.value_of("port").unwrap().parse().unwrap_or_else(|_| {
         eprintln!("specified port isn't in a valid range, setting to 8080");
         8080
@@ -67,7 +78,7 @@ async fn main() -> Result<()> {
         .filter(None, LevelFilter::Info)
         .init();
 
-    let db = DB::init(&url).await?;
+    let db = DB::init(&url, &db).await?;
 
     // Get initial cache
 //    let mut cache = Cache::new();

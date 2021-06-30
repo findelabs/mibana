@@ -4,19 +4,27 @@
 <body>
     <div id="page">
       <div id="header">
-        <div class="report"><a href="/">Finde Report</a></div>
+        <div class="report"><a href="/query">Frontpage</a></div>
           <div class="search">
-            <img src="/search_icon.svg" id="search_icon" />
 	        <form id="search_field" style="display: block">
               <input id="query" name="query" type="text" placeholder="Search">
 	        </form>
-            <script>
-              const queryString = window.location.search;
-              const urlParams = new URLSearchParams(queryString);
-              const query = urlParams.get('query')
-              document.getElementById("query").value = query
-            </script>
           </div>
+          <div class="select">
+            <select id="collections">
+              {% for collection in collections %}
+              <option value="{{collection}}">{{collection}}</option>
+              {% endfor %}
+            </select>
+          </div>
+          <script>
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const query = urlParams.get('query')
+                const collection = urlParams.get('collection')
+                document.getElementById("query").value = query
+                document.getElementById("collections").value = collection
+          </script>
         </div>
       <div id="grid">
         {% if results | length == 0 %}
@@ -30,7 +38,7 @@
         {% else %}
         {% for post in results %}
         <div class="link">
-        {{post}}
+{{post | safe}}
         </div>
         {% endfor %}
         {% endif %}
@@ -38,12 +46,11 @@
       <div id="mobile">
         {% for post in results %}
         <div class="link">
-        {{post}}
+{{post | safe}}
         </div>
         {% endfor %}
       </div>
       <script type="text/javascript" src="/tools.js"></script>
-{% include "partials/footer.html" %}
     </div>
 </body>
 </html>

@@ -93,7 +93,17 @@ a:hover {
   align-items: center; 
 }
 
-.search { text-align: center; vertical-align: middle; height: 100%; padding-right: 15px; float:right; display: flex; align-items: center; font-size: 12pt; }
+.search { 
+  text-align: center; 
+  vertical-align: middle; 
+  height: 100%; 
+  padding-left: 15px; 
+  float: left; 
+  display: flex;
+  align-items: center; 
+  font-size: 12pt; 
+}
+
 #search_field { display: none; }
 #search_icon { cursor: pointer; }
 #page { background: #ffffff; border: 0px solid #c0c0c0; width: 1400px; margin: 0 auto; }
@@ -104,7 +114,7 @@ a:hover {
 
 #grid { 
   display: grid; 
-  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-columns: 1fr; 
   column-gap: 10px; 
   padding-top: 30px; 
   margin: 0px 10px; 
@@ -120,7 +130,9 @@ a:hover {
 
 .link { 
   font-family: 'Noto Serif JP', serif;
-  padding-bottom: 20px
+  padding-bottom: 20px;
+  white-space: pre-wrap;
+  border-bottom: solid 2px green;
 }
 
 .column { align-self: normal; justify-self: center; text-align: left; padding: 0px 0px 0px 0px; }
@@ -170,15 +182,40 @@ span.age {
   text-align: right 
 }
 
+select {
+  // A reset of styles, including removing the default dropdown arrow
+  appearance: none;
+  // Additional resets for further consistency
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  margin: 10pt auto;
+  width: 200px;
+  font-size: 12pt;
+  cursor: inherit;
+  line-height: inherit;
+  display: flex;
+  float: right; 
+  color: #696969;
+  text-align: center; 
+  vertical-align: middle; 
+  height: 100%; 
+  padding-right: 15px; 
+  align-items: center; 
+}
+
+select::-ms-expand {
+  display: none;
+}
+
 input {
   box-sizing: border-box;
-  border: 0;
   outline: none;
   font-size: 15pt;
   padding: 10px;
   display: flex;
   margin: 10pt auto;
-  width: 400px; 
+  width: 600px; 
   color: #696969;
   border: 2px solid transparent;
   border-bottom: solid 2px green;
@@ -201,7 +238,9 @@ input:focus {
   #mobile p { font-size: 12pt; margin-block-start: 5px; margin-block-end: 5px; gap: 10px; }
   #grid { display: none }
   #search_grid { display: none }
-  .link{ padding-bottom: 20px;  }
+  .link{ 
+    padding-bottom: 20px;
+  }
   span.title { font-size: 14pt; font-weight: bold; }
   #grid p { 
     font-family: 'Noto Serif JP', serif;
