@@ -65,7 +65,7 @@ pub async fn echo(
                 Some(query) => db.search(query, collection).await?,
                 None => {
                     let mut results = Vec::new();
-                    let string = "this is a test".to_owned();
+                    let string = "{\"message\": \"Enter a search parameter\"}".to_owned();
                     let collections = db.collections().await?;
                     results.push(string);
                     db::Hits {
