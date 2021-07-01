@@ -28,17 +28,9 @@
         </div>
       <div id="grid">
         {% if results | length == 0 %}
-        <div class="link"></div>
-        <div class="link">
-    	  <a href="/">
-    	    <span class="title">Oops! We don't have any info on that!</span>
-    	    <p>Click here to go back</p>
-    	  </a>
-        </div>
         {% else %}
         {% for post in results %}
-        <div class="link">
-{{post | safe}}
+        <div class="link">{{post|safe}}
         </div>
         {% endfor %}
         {% endif %}

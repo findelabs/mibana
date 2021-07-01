@@ -66,7 +66,7 @@ impl DB {
         };
 
         let find_options = FindOptions::builder()
-            .sort(doc! { "time": -1 })
+            .sort(doc! { "_time": -1 })
             .limit(Some(LIMIT))
             .projection(Some(doc!{"_id":0}))
             .build();

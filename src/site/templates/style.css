@@ -130,9 +130,19 @@ a:hover {
 
 .link { 
   font-family: 'Noto Serif JP', serif;
-  padding-bottom: 20px;
   white-space: pre-wrap;
-  border-bottom: solid 2px green;
+  border: solid 1px green;
+  width: 800px;
+  height: 200px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  font-size: 12pt; 
+  text-overflow:ellipsis;
+  margin-top: 20px;
+}
+
+.link:hover {
+  cursor: pointer;
 }
 
 .column { align-self: normal; justify-self: center; text-align: left; padding: 0px 0px 0px 0px; }
@@ -187,7 +197,7 @@ select {
   appearance: none;
   // Additional resets for further consistency
   background-color: transparent;
-  border: none;
+//  border: none;
   padding: 10px;
   margin: 10pt auto;
   width: 200px;
@@ -211,7 +221,7 @@ select::-ms-expand {
 input {
   box-sizing: border-box;
   outline: none;
-  font-size: 15pt;
+  font-size: 12pt;
   padding: 10px;
   display: flex;
   margin: 10pt auto;

@@ -64,10 +64,10 @@ pub async fn echo(
             let results = match queries.get("query") {
                 Some(query) => db.search(query, collection).await?,
                 None => {
-                    let mut results = Vec::new();
-                    let string = "{\"message\": \"Enter a search parameter\"}".to_owned();
+                    let results = Vec::new();
+//                    let string = "{\"message\": \"Enter a search parameter\"}".to_owned();
+//                    results.push(string);
                     let collections = db.collections().await?;
-                    results.push(string);
                     db::Hits {
                         results,
                         collections 
