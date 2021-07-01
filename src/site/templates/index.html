@@ -4,7 +4,7 @@
 <body>
     <div id="page">
       <div id="header">
-        <div class="report"><a href="/query">Frontpage</a></div>
+        <div class="report"><a href="/query">Mibana</a></div>
           <div class="search">
 	        <form id="search_field" style="display: block">
               <input id="query" name="query" type="text" placeholder="Search">
@@ -18,12 +18,16 @@
             </select>
           </div>
           <script>
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-                const query = urlParams.get('query')
-                const collection = urlParams.get('collection')
-                document.getElementById("query").value = query
-                document.getElementById("collections").value = collection
+              const queryString = window.location.search;
+              const urlParams = new URLSearchParams(queryString);
+              const query = urlParams.get('query')
+              const collection = urlParams.get('collection')
+              document.getElementById("query").value = query
+              document.getElementById("collections").value = collection
+
+              function myFunction(x) {
+                  x.classList.toggle("change");
+              }
           </script>
         </div>
       <div id="grid">

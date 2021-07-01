@@ -80,7 +80,6 @@ a:hover {
   font-family: 'Noto Sans JP', sans-serif;
   font-weight: bold; 
   color: #1a1a1a; 
-  display:flex; 
   margin-left: 10px; 
   font-size: 22pt; 
   border-right: 5px solid #32a852; 
@@ -96,11 +95,11 @@ a:hover {
 .search { 
   text-align: center; 
   vertical-align: middle; 
+  align-items: center; 
   height: 100%; 
   padding-left: 15px; 
   float: left; 
   display: flex;
-  align-items: center; 
   font-size: 12pt; 
 }
 
@@ -192,7 +191,7 @@ span.age {
   text-align: right 
 }
 
-select {
+.select {
   // A reset of styles, including removing the default dropdown arrow
   appearance: none;
   // Additional resets for further consistency
@@ -204,14 +203,14 @@ select {
   font-size: 12pt;
   cursor: inherit;
   line-height: inherit;
-  display: flex;
   float: right; 
   color: #696969;
   text-align: center; 
   vertical-align: middle; 
-  height: 100%; 
   padding-right: 15px; 
   align-items: center; 
+  margin: 10pt auto;
+  display: flex;
 }
 
 select::-ms-expand {
@@ -284,3 +283,4 @@ input:focus {
   }
 
 }
+
