@@ -13,29 +13,11 @@ $('#search_field').on('submit',function(e){
     var formData=$(this).serialize();
     var url = [location.protocol, '//', location.host, location.pathname].join('');
     var collection = urlParams.get('collection')
-    var finalUrl = url+"?collection="+collection+"&"+formData;
+    var projection = encodeURIComponent($("#projection_input").val());
+    var finalUrl = url+"?collection="+collection+"&projection="+projection+"&"+formData;
     window.location.href = finalUrl;
 }) 
 
-/*
-$('.link').click(function () {
-  $(this).toggle(function(){
-    $(this).animate({height: 1000});
-  },function(){
-    $(this).animate({height: 200});
-  });
-});
-
-
-$('.link').click(function () {
-  if ($(this).height() == 200) {
-    $(this).animate("height",1000);
-  }
-  else if ($(this).height() == 1000) {
-    $(this).animate("height",200);
-  });
-});
-*/
 
 $(document).ready(function (){
     $(".link").on("click", function (){
@@ -52,3 +34,7 @@ $(document).ready(function (){
             }
         });
     });
+
+$("#menu_icon").click(function(){
+  $("#options").toggle();
+});

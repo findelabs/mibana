@@ -998,7 +998,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "mongodb-frontpage"
+name = "mongodb-mibana"
 version = "0.1.0"
 dependencies = [
  "bson",

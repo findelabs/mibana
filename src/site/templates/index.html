@@ -10,6 +10,7 @@
               <input id="query" name="query" type="text" placeholder="Search">
 	        </form>
           </div>
+          <img src="/menu.svg" id="menu_icon" />
           <div class="select">
             <select id="collections">
               {% for collection in collections %}
@@ -17,19 +18,12 @@
               {% endfor %}
             </select>
           </div>
-          <script>
-              const queryString = window.location.search;
-              const urlParams = new URLSearchParams(queryString);
-              const query = urlParams.get('query')
-              const collection = urlParams.get('collection')
-              document.getElementById("query").value = query
-              document.getElementById("collections").value = collection
-
-              function myFunction(x) {
-                  x.classList.toggle("change");
-              }
-          </script>
         </div>
+      <div id="options">
+	    <form id="projection_form" style="display: block" onsubmit="return false;">
+          <input id="projection_input" name="projection_input" type="text" placeholder="Projection">
+	    </form>
+      </div>
       <div id="grid">
         {% if results | length == 0 %}
         {% else %}
@@ -47,6 +41,16 @@
         {% endfor %}
       </div>
       <script type="text/javascript" src="/tools.js"></script>
+      <script>
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          const query = urlParams.get('query')
+          const collection = urlParams.get('collection')
+          const projection = urlParams.get('projection')
+          document.getElementById("query").value = query
+          document.getElementById("collections").value = collection
+          document.getElementById("projection_input").value = projection
+      </script>
     </div>
 </body>
 </html>

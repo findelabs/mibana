@@ -59,10 +59,14 @@ pub async fn echo(
 
             let default = "test".to_owned();
             let collection = queries.get("collection").unwrap_or(&default);
+            let projection = match queries.get("projection") {
+                Some(e) => e.to_string(),
+                _ => "\"_id\": 0".to_owned()
+            };
 
             // Get posts based on query param
             let results = match queries.get("query") {
-                Some(query) => db.search(query, collection).await?,
+                Some(query) => db.search(query, collection, &projection).await?,
                 None => {
                     let results = Vec::new();
 //                    let string = "{\"message\": \"Enter a search parameter\"}".to_owned();
@@ -87,6 +91,14 @@ pub async fn echo(
         }
         (&Method::GET, "/search_icon.svg") => {
             let bytes: Vec<u8> = include_bytes!("site/images/search_icon.svg").to_vec();
+            let mut response = Response::new(Body::from(bytes));
+            response
+                .headers_mut()
+                .insert(CONTENT_TYPE, HeaderValue::from_static("image/svg+xml"));
+            Ok(response)
+        }
+        (&Method::GET, "/menu.svg") => {
+            let bytes: Vec<u8> = include_bytes!("site/images/menu.svg").to_vec();
             let mut response = Response::new(Body::from(bytes));
             response
                 .headers_mut()

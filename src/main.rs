@@ -21,7 +21,7 @@ type Result<T> = std::result::Result<T, Box<dyn std::error::Error + Send + Sync>
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    let opts = App::new("mongodb-frontpage")
+    let opts = App::new("mongodb-mibana")
         .version(crate_version!())
         .author("Daniel F. <dan@findelabs.com>")
         .about("Frontpage to a MongoDB Database")
@@ -98,7 +98,7 @@ async fn main() -> Result<()> {
     let server = Server::bind(&addr).serve(service);
 
     log::info!(
-        "Starting mongodb-frontpage:{} on http://{}",
+        "Starting mongodb-mibana:{} on http://{}",
         crate_version!(),
         addr
     );
