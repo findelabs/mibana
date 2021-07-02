@@ -35,6 +35,14 @@ $(document).ready(function (){
         });
     });
 
+$(document).click(function() {
+    var options = $("#options");
+    var menuButton = $("#menu_icon");
+    if (!options.is(event.target) && !options.has(event.target).length && !menuButton.is(event.target)) {
+        options.hide();
+    }
+});
+
 $("#menu_icon").click(function(){
   $("#options").toggle();
 });
